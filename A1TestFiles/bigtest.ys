@@ -1,0 +1,174 @@
+ .quad   10
+ .quad   0x7789
+ 
+ 
+ 
+ 
+ .pos 0x100
+ 	# let's just enumerate a bunch of instructions
+ 	# do a move across all the registers
+ 	rrmovq  %rax, %rax
+ 	rrmovq  %rax, %rcx
+ 	rrmovq  %rax, %rdx
+ 	rrmovq  %rax, %rbx
+ 	rrmovq   %rax, %rsi
+ 	rrmovq  %rax, %rdi
+ 	rrmovq  %rax, %rsp
+ 	rrmovq  %rax, %rbp
+ 
+ 	rrmovq   %rcx, %rsi
+ 	rrmovq   %rdx, %rsi
+ 	rrmovq   %rbx, %rsi
+ 	rrmovq    %rsi, %rsi
+ 	rrmovq   %rdi, %rsi
+ 	rrmovq   %rsp, %rsi
+ 	rrmovq   %rbp, %rsi
+ 
+ 	irmovq  $0xdeadbeef, %rax 
+ 	irmovq  $0xdeadbeef, %rcx
+ 	irmovq  $0xdeadbeef, %rdx
+ 	irmovq  $0xdeadbeef, %rbx
+ 	irmovq  $0xdeadbeef, %rsi
+ 	irmovq  $0xdeadbeef, %rdi
+ 	irmovq  $0xdeadbeef, %rsp
+ 	irmovq  $0xdeadbeef, %rbp
+ 
+ 
+ .pos 0x500
+ 	rmmovq  %rax, 0xbeefdeadfeed(%rax)
+ 	rmmovq  %rax, 0xbeefdead(%rcx)
+ 	rmmovq  %rax, 0xbeefdead(%rdx)
+ 	rmmovq  %rax, 0xbeefdeadfeed(%rbx)
+ 	rmmovq  %rax, 0xbeefdead(%rsi)
+ 	rmmovq  %rax, 0xbeefdead(%rdi)
+ 	rmmovq  %rax, 0xbeefdeadfeed(%rsp)
+ 	rmmovq  %rax, 0xbeefdeadfed(%rbp)
+ 
+ 	rmmovq  %rax, 0xbeefdead(%rax)
+ 	rmmovq  %rcx, 0xbeefdead(%rax)
+ 	rmmovq  %rdx, 0xbeefdead(%rax)
+ 	rmmovq  %rbx, 0xbeefdead(%rax)
+ 	rmmovq  %rsi, 0xbeefdead77778889(%rax)
+ 	rmmovq  %rdi, 0xbeefdead(%rax)
+ 	rmmovq  %rsp, 0xbeefdead(%rax)
+ 	rmmovq  %rbp, 0xbeefdead(%rax)
+ 
+ 
+ 	mrmovq  0xbeefdead(%rax),%rax
+ 	mrmovq  0xbeefdead(%rcx),%rax
+ 	mrmovq  0xbeefdead(%rdx),%rax
+ 	mrmovq  0xbeefdead(%rbx),%rax
+ 	mrmovq  0xbeefdead(%rsi),%rax
+ 	mrmovq  0xbeefdead(%rdi),%rax
+ 	mrmovq  0xbeefdead(%rsp),%rax
+ 	mrmovq  0xbeefdead(%rbp),%rax
+ 				     
+ 	mrmovq  0xbeefdead(%rax),%rax
+ 	mrmovq  0xbeefdead(%rax),%rcx
+ 	mrmovq  0xbeefdead(%rax),%rdx
+ 	mrmovq  0xbeefdead(%rax),%rbx
+ 	mrmovq  0xbeefdead(%rax),%rsi
+ 	mrmovq  0xbeefdead(%rax),%rdi
+ 	mrmovq  0xbeefdead(%rax),%rsp
+ 	mrmovq  0xbeefdead(%rax),%rbp
+ 
+ .pos 0x800
+ 	addq  %rax, %rax
+ 	addq  %rax, %rcx
+ 	addq  %rax, %rdx
+ 	addq  %rax, %rbx
+ 	addq  %rax, %rsi
+ 	addq  %rax, %rdi
+ 	addq  %rax, %rsp
+ 	addq  %rax, %rbp
+ 
+ 	addq   %rcx, %rsi
+ 	addq   %rdx, %rsi
+ 	addq   %rbx, %rsi
+ 	addq   %rsi, %rsi
+ 	addq   %rdi, %rsi
+ 	addq   %rsp, %rsi
+ 	addq   %rbp, %rsi
+ 
+ 
+ 	addq   %rcx, %rax
+ 	addq   %rcx, %r8
+ 	addq   %rdx, %r9
+ 	addq   %rbx, %r10
+ 	addq   %rsi, %r11
+ 	addq   %rdi, %r12
+ 	addq   %rsp, %r13
+ 	addq   %rbp, %r14
+ 
+ 
+ 	addq   %r14, %rbp
+ 	addq   %r12, %r8
+ 	addq   %r12, %r9
+ 	addq   %r11, %r10
+ 	addq   %r10, %r11
+ 	addq   %r9, %r12
+ 	addq   %r8, %r13
+ 	addq   %rsp, %r14
+ 
+ 	subq   %rcx, %rsi
+ 	andq   %rdx, %rsi
+ 	xorq   %rbx, %rsi
+ 
+ 
+ 	jmp  0xdaddad
+ 	jle  0xdaddad
+ 	jl   0xdaddda
+ 	je   0xdaddad
+ 	jne  0xdaddad
+ 	jge  0xdaddad
+ 	jg   0xdaddad
+ 	
+ 	cmovl  %rax, %rax
+ 	cmovl  %rax, %rcx
+ 	cmovl  %rax, %rdx
+ 	cmovl  %rax, %rbx
+ 	cmovl  %rax, %rsi
+ 	cmovl  %rax, %rdi
+ 	cmovl  %rax, %rsp
+ 	cmovl  %rax, %rbp
+ 
+ 	ret
+ 	
+ 	cmovl   %rcx, %rsi
+ 	cmovl   %rdx, %rsi
+ 	cmovl   %rbx, %rsi
+ 	cmovl   %rsi, %rsi
+ 	cmovl   %rdi, %rsi
+ 	cmovl   %rsp, %rsi
+ 	cmovl   %rbp, %rsi
+ 
+ 	call    0x1234567890123456
+ 	
+ 	cmovle   %rcx, %rsi
+ 	cmovl   %rdx, %rsi
+ 	cmovne   %rbx, %rsi
+ 	cmovge   %rsi, %rsi
+ 	cmovg   %rdi, %rsi
+ 
+ 	pushq   %rax
+ 	pushq   %rcx
+ 	pushq   %rdx
+ 	pushq   %rbx
+ 	pushq   %rsi
+ 	pushq   %rdi
+ 	pushq   %rsp
+ 	pushq   %rbp
+ 
+ 	popq   %rax
+ 	popq   %rcx
+ 	popq   %rdx
+ 	popq   %rbx
+ 	popq   %rsi
+ 	popq   %rdi
+ 	popq   %rsp
+ 	popq   %rbp
+ 
+ 
+ 
+ 
+ 	
